@@ -1,0 +1,500 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f0f5f9; /* Light blue-gray background */
+  --foreground: #2d3a47; /* Dark blue-gray for text */
+  --primary: #547792; /* Requested blue-green tone */
+  --primary-light: #7ba0b8; /* Lighter version of primary */
+  --secondary: #3c6b8c; /* Complementary blue */
+  --secondary-light: #8db3cc; /* Lighter blue */
+  --accent: #a2c4a6; /* Complementary green accent */
+  --accent-light: #c0d8c4; /* Light green accent */
+  --success: #2e7d32; /* Professional green */
+  --warning: #ff8f00; /* Amber */
+  --error: #d32f2f; /* Professional red */
+  --card-bg: #ffffff; /* Pure white cards */
+  --border: #c2d1dd; /* Light blue-gray border */
+  --muted: #7a8a99; /* Muted blue-gray */
+  --radius: 0.5rem; /* Default radius */
+  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+  --ai-background-home: url('/images/ai-background-home.jpg');
+  --ai-background-courses: url('/images/ai-background-courses.jpg');
+  --ai-background-about: url('/images/ai-background-about.jpg');
+  --ai-background-business: url('/images/ai-background-business.jpg');
+  --ai-background-contact: url('/images/ai-background-contact.jpg');
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: #ffffff;
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: #ffffff;
+  --color-accent: var(--accent);
+  --color-accent-foreground: #ffffff;
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-card: var(--card-bg);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --radius-default: var(--radius);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --ai-background-home: var(--ai-background-home);
+  --ai-background-courses: var(--ai-background-courses);
+  --ai-background-about: var(--ai-background-about);
+  --ai-background-business: var(--ai-background-business);
+  --ai-background-contact: var(--ai-background-contact);
+}
+
+/* Dark mode styles - applied when dark class is present on html element */
+html.dark {
+  --background: #0f1a2a; /* Deep blue background */
+  --foreground: #d1e0f0; /* Light blue-gray */
+  --primary: #2a5a8f; /* Darker blue */
+  --primary-light: #4a7ab5; /* Medium blue */
+  --secondary: #3a6bb0; /* Darker complementary blue */
+  --secondary-light: #6a9bda; /* Medium blue */
+  --accent: #008ac4; /* Darker bright blue */
+  --accent-light: #46b0e0; /* Medium sky blue */
+  --success: #00603d; /* Darker green */
+  --warning: #b88d00; /* Darker golden yellow */
+  --error: #a84545; /* Darker red */
+  --card-bg: #1a2a3a; /* Dark blue-gray for cards */
+  --border: #2a4a6a; /* Dark blue border */
+  --muted: #8ca0b8; /* Darker blue-gray */
+  --radius: 0.5rem; /* Default radius */
+}
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  position: relative;
+  background-image:
+    radial-gradient(circle at 10% 20%, color-mix(in srgb, var(--primary) 10%, transparent) 1.5%, transparent 2%),
+    radial-gradient(circle at 90% 80%, color-mix(in srgb, var(--accent) 10%, transparent) 1.5%, transparent 2%),
+    radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--secondary) 8%, transparent) 1%, transparent 1.5%);
+  background-size: 200px 200px, 200px 200px, 150px 150px;
+  background-repeat: repeat;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--card-bg);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground);
+}
+
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Footer specific styles */
+footer {
+  background: color-mix(in srgb, var(--card-bg) 30%, transparent) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  border-top: 1px solid color-mix(in srgb, var(--border) 40%, transparent) !important;
+  color: var(--foreground) !important;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+footer h3,
+footer .text-lg.font-bold {
+  color: var(--foreground) !important;
+}
+
+footer p,
+footer .text-gray-600 {
+  color: var(--muted) !important;
+}
+
+footer a,
+footer a.text-gray-600,
+footer a.text-gray-300 {
+  color: var(--muted) !important;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--accent) !important;
+}
+
+/* Specific overrides for footer elements */
+footer .dark\:text-gray-300 {
+  color: var(--muted) !important;
+}
+
+footer .dark\:text-gray-400 {
+  color: var(--muted) !important;
+}
+
+footer .dark\:text-white {
+  color: var(--foreground) !important;
+}
+
+footer .dark\:from-gray-900 {
+  background: var(--background) !important;
+}
+
+footer .dark\:to-gray-800 {
+  background: var(--card-bg) !important;
+}
+
+footer .dark\:border-gray-700 {
+  border-color: var(--border) !important;
+}
+
+/* Navigation specific styles */
+nav a,
+nav a.text-gray-700,
+nav a.text-gray-300 {
+  color: var(--foreground) !important;
+  transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav .hover\:text-blue-600,
+nav .dark\:hover\:text-blue-400 {
+  color: var(--accent) !important;
+}
+
+/* Active link in navigation */
+nav a.active,
+nav a[aria-current="page"],
+nav a.text-blue-600 {
+  color: var(--primary) !important;
+}
+
+/* Custom animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] text-white font-semibold rounded-lg shadow-md hover:from-[var(--primary-light)] hover:to-[var(--secondary-light)] transition-all duration-300 transform hover:-translate-y-0.5;
+}
+
+.btn-secondary {
+  @apply bg-[var(--card-bg)] text-[var(--foreground)] font-semibold rounded-lg shadow-md border border-[var(--border)] hover:bg-[var(--background)] transition-colors duration-300;
+}
+
+/* Card styles */
+.card {
+  @apply bg-[var(--card-bg)] rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300;
+}
+
+/* Gradient backgrounds */
+.gradient-bg {
+  @apply bg-gradient-to-br from-[var(--background)] to-[var(--card-bg)];
+}
+
+/* Typography enhancements */
+.h1 {
+  @apply text-4xl md:text-5xl font-bold text-[var(--foreground)];
+}
+
+.h2 {
+  @apply text-3xl md:text-4xl font-bold text-[var(--foreground)];
+}
+
+.h3 {
+  @apply text-2xl font-bold text-[var(--foreground)];
+}
+
+.text-body {
+  @apply text-[var(--muted)];
+}
+
+/* Container */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Glass effect utility classes */
+.glass {
+  background: color-mix(in srgb, var(--card-bg) 20%, transparent);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid color-mix(in srgb, var(--card-bg) 30%, transparent);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.glass-card {
+  background: color-mix(in srgb, var(--card-bg) 20%, transparent);
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+}
+
+.glass-hover {
+  background: color-mix(in srgb, var(--card-bg) 20%, transparent);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  transition: all 300ms ease-in-out;
+}
+
+.glass-hover:hover {
+  background: color-mix(in srgb, var(--background) 30%, transparent);
+  backdrop-filter: blur(16px) saturate(200%);
+  -webkit-backdrop-filter: blur(16px) saturate(200%);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.45);
+}
+
+/* Global glass effect class for strong glass effect */
+.glass-full {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--card-bg) 25%, transparent) 0%, color-mix(in srgb, var(--background) 20%, transparent) 100%);
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-full::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 30%, transparent) 0%, transparent 70%);
+  opacity: 0.1;
+  z-index: -1;
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Enhanced hover effects */
+.hover-lift {
+  transition: transform 300ms ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.hover-glow {
+  transition: all 300ms ease-in-out;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.hover-scale {
+  transition: transform 300ms ease-in-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Navigation glass effect */
+.nav-glass {
+  background: color-mix(in srgb, var(--card-bg) 30%, transparent);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Advanced Animations */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-slide-in-up {
+  animation: slide-in-up 0.6s ease-out forwards;
+}
+
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in-down {
+  animation: slide-in-down 0.6s ease-out forwards;
+}
+
+@keyframes slide-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out forwards;
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 8s linear infinite;
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-y {
+  background-size: auto 200%;
+  animation: gradient-y 8s linear infinite;
+}
+
+@keyframes gradient-y {
+  0%, 100% {
+    background-position: 50% 0%;
+  }
+  50% {
+    background-position: 50% 100%;
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 20s linear infinite;
+}
+
+/* Subtle AI-themed background patterns */
+.ai-pattern-bg {
+  background-image:
+    radial-gradient(circle at 15% 30%, color-mix(in srgb, var(--primary) 15%, transparent) 1.2%, transparent 1.8%),
+    radial-gradient(circle at 85% 70%, color-mix(in srgb, var(--accent) 15%, transparent) 1.2%, transparent 1.8%),
+    radial-gradient(circle at 50% 20%, color-mix(in srgb, var(--secondary) 12%, transparent) 0.8%, transparent 1.2%),
+    linear-gradient(0deg, transparent 24.5%, color-mix(in srgb, var(--border) 5%, transparent) 25%, color-mix(in srgb, var(--border) 5%, transparent) 25.5%, transparent 26%),
+    linear-gradient(90deg, transparent 24.5%, color-mix(in srgb, var(--border) 5%, transparent) 25%, color-mix(in srgb, var(--border) 5%, transparent) 25.5%, transparent 26%);
+  background-size: 150px 150px, 150px 150px, 100px 100px, 50px 50px, 50px 50px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+}
+
+/* Prominent AI-themed background */
+.ai-prominent-bg {
+  background-image:
+    radial-gradient(circle at 10% 20%, color-mix(in srgb, var(--primary) 25%, transparent) 2.5%, transparent 3%),
+    radial-gradient(circle at 90% 80%, color-mix(in srgb, var(--accent) 25%, transparent) 2.5%, transparent 3%),
+    radial-gradient(circle at 50% 40%, color-mix(in srgb, var(--secondary) 20%, transparent) 2%, transparent 2.5%),
+    linear-gradient(135deg, color-mix(in srgb, var(--background) 80%, var(--primary)), color-mix(in srgb, var(--background) 80%, var(--secondary)));
+  background-size: 300px 300px, 300px 300px, 200px 200px, 100% 100%;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+}
+
+/* Fade-in animations with delays */
+.fade-in-1 {
+  animation: fadeIn 0.8s ease-out forwards;
+  animation-delay: 0.1s;
+}
+
+.fade-in-2 {
+  animation: fadeIn 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.fade-in-3 {
+  animation: fadeIn 0.8s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.fade-in-4 {
+  animation: fadeIn 0.8s ease-out forwards;
+  animation-delay: 0.4s;
+}
