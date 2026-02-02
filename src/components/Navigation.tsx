@@ -88,24 +88,29 @@ export default function Navigation() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                href={link.path}
-                className={`${
-                  pathname === link.path
-                    ? "bg-blue-50 text-blue-600"
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
-                } block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+        <div className="fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden" onClick={() => setMobileMenuOpen(false)}>
+          <div
+            className="fixed top-16 left-0 right-0 z-50 bg-white dark:bg-slate-800 shadow-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  href={link.path}
+                  className={`${
+                    pathname === link.path
+                      ? "bg-blue-50 text-blue-600"
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                  } block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       )}
