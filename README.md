@@ -46,13 +46,22 @@ BitCraft Institute bridges the gap between traditional education and the rapidly
 
 ## 🏫 Leadership
 
-- **Sir Khawaja Naqeeb Uddin**  
-  *Owner & Principal*  
+- **Sir Khawaja Naqeeb Uddin**
+  *Owner & Principal*
   Educational leader with extensive experience in technology education and institutional growth.
 
-- **Sir Bilawal Kiyani**  
-  *Partner & Leading Teacher*  
+- **Sir Bilawal Kiyani**
+  *Partner & Leading Teacher*
   Expert educator with deep expertise in curriculum development and instruction.
+
+---
+
+## 📞 Contact Information
+
+- **Website:** [www.bitcraftinstitute.com](https://www.bitcraftinstitute.com)
+- **Email:** [bitcraftinstitute@gmail.com](mailto:bitcraftinstitute@gmail.com)
+- **Phone:** +92 302 2037478
+- **Address:** F.B. Area block 9, Karachi, Pakistan
 
 ---
 
