@@ -117,13 +117,13 @@ const Footer = () => {
 
           {/* Programs */}
           <div>
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6">Programs</h3>
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6">Popular Courses</h3>
             <ul className="space-y-3">
-              <li><Link href="/courses/web-development" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Web Development</Link></li>
-              <li><Link href="/courses/mobile-development" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Mobile Development</Link></li>
-              <li><Link href="/courses/data-science" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Data Science</Link></li>
-              <li><Link href="/courses/cybersecurity" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Cybersecurity</Link></li>
-              <li><Link href="/courses/cloud-computing" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Cloud Computing</Link></li>
+              <li><Link href="/courses/5" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Web Development</Link></li>
+              <li><Link href="/courses/10" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Mobile Development</Link></li>
+              <li><Link href="/courses/7" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Data Science & ML</Link></li>
+              <li><Link href="/courses/8" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Cybersecurity</Link></li>
+              <li><Link href="/courses/9" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300">Cloud Architecture</Link></li>
             </ul>
           </div>
 
