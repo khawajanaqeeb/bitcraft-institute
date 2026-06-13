@@ -60,7 +60,7 @@ BitCraft Institute bridges the gap between traditional education and the rapidly
 
 - **Website:** [www.bitcraftinstitute.com](https://www.bitcraftinstitute.com)
 - **Email:** [bitcraftinstitute@gmail.com](mailto:bitcraftinstitute@gmail.com)
-- **Phone:** +92 302 2037478
+- **Phone:** +92 301 2037478
 - **Address:** F.B. Area block 9, Karachi, Pakistan
 
 ---

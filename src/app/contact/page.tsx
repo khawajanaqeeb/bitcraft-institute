@@ -30,7 +30,12 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Phone</h3>
-                  <p className="text-gray-600 dark:text-gray-300">+92 302 2037478</p>
+                  <a
+                    href="tel:+923012037478"
+                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                  >
+                    +92 301 2037478
+                  </a>
                   <p className="text-gray-600 dark:text-gray-300">Mon-Fri, 9am-5pm PKT</p>
                 </div>
               </div>
@@ -43,8 +48,12 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Email</h3>
-                  <p className="text-gray-600 dark:text-gray-300">bitcraftinstitute@gmail.com</p>
-
+                  <a
+                    href="mailto:bitcraftinstitute@gmail.com"
+                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                  >
+                    bitcraftinstitute@gmail.com
+                  </a>
                 </div>
               </div>
 
@@ -70,7 +79,14 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">WhatsApp</h3>
-                  <p className="text-gray-600 dark:text-gray-300">+92 345 2435349</p>
+                  <a
+                    href="https://wa.me/923452435349"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                  >
+                    +92 345 2435349
+                  </a>
                   <p className="text-gray-600 dark:text-gray-300"></p>
                 </div>
               </div>
@@ -83,7 +99,14 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">Website</h3>
-                  <p className="text-gray-600 dark:text-gray-300">www.bitcraftinstitute.com</p>
+                  <a
+                    href="https://www.bitcraftinstitute.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                  >
+                    www.bitcraftinstitute.com
+                  </a>
                   <p className="text-gray-600 dark:text-gray-300"></p>
                 </div>
               </div>

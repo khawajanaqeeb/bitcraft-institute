@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaTwitter, FaFacebook, FaInstagram, FaGlobe, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -16,14 +16,32 @@ const Footer = () => {
 
   const contactInfo = [
     {
-      icon: <FaPhone className="text-blue-500 dark:text-blue-400" />,
-      label: "+92 302 2037478",
-      description: "Mon-Fri, 9am-5pm PKT"
+      icon: <FaGlobe className="text-blue-500 dark:text-blue-400" />,
+      label: "www.bitcraftinstitute.com",
+      description: "Visit our website",
+      isLink: true,
+      linkUrl: "https://www.bitcraftinstitute.com"
     },
     {
       icon: <FaEnvelope className="text-blue-500 dark:text-blue-400" />,
       label: "bitcraftinstitute@gmail.com",
-      description: "Email us for inquiries"
+      description: "Email us for inquiries",
+      isLink: true,
+      linkUrl: "mailto:bitcraftinstitute@gmail.com"
+    },
+    {
+      icon: <FaPhone className="text-blue-500 dark:text-blue-400" />,
+      label: "+92 301 2037478",
+      description: "Mon-Fri, 9am-5pm PKT",
+      isLink: true,
+      linkUrl: "tel:+923012037478"
+    },
+    {
+      icon: <FaWhatsapp className="text-blue-500 dark:text-blue-400" />,
+      label: "+92 345 2435349",
+      description: "WhatsApp support",
+      isLink: true,
+      linkUrl: "https://wa.me/923452435349"
     },
     {
       icon: <FaMapMarkerAlt className="text-blue-500 dark:text-blue-400" />,
@@ -119,7 +137,18 @@ const Footer = () => {
                     {item.icon}
                   </div>
                   <div>
-                    <p className="text-gray-900 dark:text-white font-medium">{item.label}</p>
+                    {item.isLink ? (
+                      <a
+                        href={item.linkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-900 dark:text-white font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <p className="text-gray-900 dark:text-white font-medium">{item.label}</p>
+                    )}
                     <p className="text-gray-600 dark:text-gray-400 text-sm">{item.description}</p>
                   </div>
                 </li>
