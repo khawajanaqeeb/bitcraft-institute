@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 export default function CoursesPage() {
+  const [selectedFilter, setSelectedFilter] = useState("All");
   // Learning Path Structure
   const learningPath = {
     level1: [
@@ -198,7 +202,12 @@ export default function CoursesPage() {
             {["All", "Level 1 - Beginner", "Level 2 - Intermediate", "Level 3 - Advanced", "Freelancing", "Projects & Certifications"].map((category, index) => (
               <button
                 key={category}
-                className={`px-4 py-2 rounded-full glass animate-scale-in fade-in-${index + 1} hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all duration-300`}
+                onClick={() => setSelectedFilter(category)}
+                className={`px-4 py-2 rounded-full glass animate-scale-in fade-in-${index + 1} transition-all duration-300 ${
+                  selectedFilter === category
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'hover:bg-blue-100 dark:hover:bg-blue-900/30'
+                }`}
               >
                 {category}
               </button>
@@ -207,6 +216,7 @@ export default function CoursesPage() {
         </div>
 
         {/* Level 1 - Beginner Courses */}
+        {(selectedFilter === "All" || selectedFilter === "Level 1 - Beginner") && (
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 animate-slide-in-down">
             Level 1 - Beginner Courses
@@ -255,8 +265,10 @@ export default function CoursesPage() {
             ))}
           </div>
         </section>
+        )}
 
         {/* Level 2 - Intermediate Courses */}
+        {(selectedFilter === "All" || selectedFilter === "Level 2 - Intermediate") && (
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 animate-slide-in-down">
             Level 2 - Intermediate Courses
@@ -305,8 +317,10 @@ export default function CoursesPage() {
             ))}
           </div>
         </section>
+        )}
 
         {/* Level 3 - Advanced Courses */}
+        {(selectedFilter === "All" || selectedFilter === "Level 3 - Advanced") && (
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 animate-slide-in-down">
             Level 3 - Advanced Courses
@@ -355,8 +369,10 @@ export default function CoursesPage() {
             ))}
           </div>
         </section>
+        )}
 
         {/* Freelancing Courses */}
+        {(selectedFilter === "All" || selectedFilter === "Freelancing") && (
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 animate-slide-in-down">
             Freelancing & Career Development
@@ -405,8 +421,10 @@ export default function CoursesPage() {
             ))}
           </div>
         </section>
+        )}
 
         {/* Projects & Certifications */}
+        {(selectedFilter === "All" || selectedFilter === "Projects & Certifications") && (
         <section className="mb-16">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 animate-slide-in-down">
             Projects & Certifications
@@ -471,6 +489,7 @@ export default function CoursesPage() {
             ))}
           </div>
         </section>
+        )}
 
         {/* CTA Section */}
         <div className="mt-16 glass rounded-3xl p-8 text-center animate-slide-in-up fade-in-4">
