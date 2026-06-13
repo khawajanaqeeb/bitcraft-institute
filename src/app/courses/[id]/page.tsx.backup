@@ -1,0 +1,543 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+// Generate static params for all course IDs
+export function generateStaticParams() {
+  return Array.from({ length: 15 }, (_, i) => ({
+    id: String(i + 1),
+  }));
+}
+
+// All course data - comprehensive details
+const allCoursesData = {
+  1: {
+    id: 1,
+    title: "Computer Fundamentals & AI Literacy",
+    description: "Build a strong foundation in computer basics and understand AI concepts for everyday use.",
+    duration: "6 weeks",
+    level: "Level 1 - Beginner",
+    category: "Fundamentals",
+    color: "green",
+    objectives: [
+      "Understand the fundamental components of computer systems",
+      "Navigate operating systems confidently and efficiently",
+      "Grasp core AI and machine learning concepts",
+      "Apply AI tools to solve everyday problems",
+      "Practice safe and responsible digital citizenship"
+    ],
+    whatYouLearn: [
+      "Computer hardware architecture and component functions",
+      "Operating system fundamentals (Windows, macOS, Linux)",
+      "File management and organization best practices",
+      "Introduction to artificial intelligence and machine learning",
+      "Popular AI tools: ChatGPT, Google Bard, and AI assistants",
+      "Digital security fundamentals and online safety",
+      "Internet basics and web browsing skills",
+      "Cloud storage and file sharing services"
+    ],
+    prerequisites: "No prior experience required - perfect for complete beginners",
+    targetAudience: [
+      "Complete beginners with little to no computer experience",
+      "Students preparing for higher education",
+      "Professionals transitioning to digital workplaces",
+      "Anyone interested in understanding AI technology"
+    ],
+    toolsTechnologies: [
+      "Windows/macOS operating systems",
+      "Microsoft Office basics",
+      "ChatGPT and AI assistants",
+      "Cloud storage platforms (Google Drive, Dropbox)",
+      "Web browsers and search engines"
+    ],
+    careerOpportunities: [
+      "Digital literacy instructor",
+      "Office assistant positions",
+      "Entry-level IT support",
+      "Foundation for advanced technical courses"
+    ],
+    modules: [
+      { title: "Computer Basics & Hardware", duration: "1 week", topics: ["Hardware components", "Input/output devices", "Storage systems"] },
+      { title: "Operating Systems Mastery", duration: "1 week", topics: ["Windows/macOS navigation", "File management", "System settings"] },
+      { title: "Introduction to AI", duration: "2 weeks", topics: ["AI concepts", "Machine learning basics", "AI ethics"] },
+      { title: "AI Tools & Applications", duration: "1 week", topics: ["ChatGPT usage", "AI assistants", "Practical applications"] },
+      { title: "Digital Safety & Security", duration: "1 week", topics: ["Online safety", "Password management", "Privacy protection"] }
+    ]
+  },
+  2: {
+    id: 2,
+    title: "Digital Skills for Office Professionals",
+    description: "Master essential productivity tools and digital workplace skills.",
+    duration: "5 weeks",
+    level: "Level 1 - Beginner",
+    category: "Fundamentals",
+    color: "green",
+    whatYouLearn: [
+      "Microsoft Office Suite mastery (Word, Excel, PowerPoint)",
+      "Email etiquette and professional communication",
+      "Cloud storage and file sharing",
+      "Virtual meeting tools (Zoom, Teams)",
+      "Time management and productivity apps"
+    ],
+    prerequisites: "Basic computer knowledge",
+    modules: [
+      { title: "Word Processing", duration: "1 week" },
+      { title: "Spreadsheets & Data", duration: "1.5 weeks" },
+      { title: "Presentations", duration: "1 week" },
+      { title: "Communication Tools", duration: "1 week" },
+      { title: "Productivity Systems", duration: "0.5 weeks" }
+    ]
+  },
+  3: {
+    id: 3,
+    title: "Computer Hardware & Troubleshooting",
+    description: "Learn to diagnose and fix common hardware issues, understand computer components.",
+    duration: "4 weeks",
+    level: "Level 1 - Beginner",
+    category: "Fundamentals",
+    color: "green",
+    whatYouLearn: [
+      "Computer hardware components and their functions",
+      "Assembly and disassembly techniques",
+      "Common hardware problems diagnosis",
+      "Basic troubleshooting methodology",
+      "Maintenance and upgrades"
+    ],
+    prerequisites: "No prior experience required",
+    modules: [
+      { title: "Hardware Components", duration: "1 week" },
+      { title: "Assembly Basics", duration: "1 week" },
+      { title: "Troubleshooting", duration: "1.5 weeks" },
+      { title: "Maintenance & Upgrades", duration: "0.5 weeks" }
+    ]
+  },
+  4: {
+    id: 4,
+    title: "AI Essentials for Everyone",
+    description: "Explore AI tools and applications to enhance productivity and creativity.",
+    duration: "8 weeks",
+    level: "Level 2 - Intermediate",
+    category: "AI & Technology",
+    color: "blue",
+    whatYouLearn: [
+      "Understanding modern AI and machine learning",
+      "ChatGPT and language models for productivity",
+      "AI image generation tools (Midjourney, DALL-E)",
+      "AI-powered automation and workflows",
+      "Ethical considerations in AI usage"
+    ],
+    prerequisites: "Computer Fundamentals & AI Literacy or equivalent",
+    modules: [
+      { title: "AI Fundamentals", duration: "1 week" },
+      { title: "Language Models", duration: "2 weeks" },
+      { title: "Image Generation AI", duration: "2 weeks" },
+      { title: "AI Automation", duration: "2 weeks" },
+      { title: "Ethics & Future", duration: "1 week" }
+    ]
+  },
+  5: {
+    id: 5,
+    title: "Web Development Bootcamp",
+    description: "Master HTML, CSS, JavaScript, React, and Node.js in this intensive program.",
+    duration: "12 weeks",
+    level: "Level 2 - Intermediate",
+    category: "Development",
+    color: "blue",
+    whatYouLearn: [
+      "HTML5 and CSS3 fundamentals",
+      "JavaScript programming and ES6+",
+      "React framework and modern component architecture",
+      "Node.js and Express backend development",
+      "Full-stack application deployment"
+    ],
+    prerequisites: "Basic computer skills and logical thinking",
+    modules: [
+      { title: "HTML & CSS", duration: "2 weeks" },
+      { title: "JavaScript Basics", duration: "2 weeks" },
+      { title: "Advanced JavaScript", duration: "2 weeks" },
+      { title: "React Development", duration: "3 weeks" },
+      { title: "Backend & Deployment", duration: "3 weeks" }
+    ]
+  },
+  6: {
+    id: 6,
+    title: "UI/UX Design",
+    description: "Create stunning user interfaces and experiences with industry-standard tools.",
+    duration: "10 weeks",
+    level: "Level 2 - Intermediate",
+    category: "Design",
+    color: "blue",
+    whatYouLearn: [
+      "Design principles and theory",
+      "User research and persona creation",
+      "Wireframing and prototyping",
+      "Figma and Adobe XD mastery",
+      "Design systems and component libraries"
+    ],
+    prerequisites: "Basic computer skills and creative mindset",
+    modules: [
+      { title: "Design Fundamentals", duration: "2 weeks" },
+      { title: "User Research", duration: "2 weeks" },
+      { title: "Wireframing & Prototyping", duration: "2 weeks" },
+      { title: "Design Tools", duration: "2 weeks" },
+      { title: "Design Systems", duration: "2 weeks" }
+    ]
+  },
+  7: {
+    id: 7,
+    title: "Data Science & Machine Learning",
+    description: "Learn Python, statistics, machine learning algorithms, and data visualization.",
+    duration: "16 weeks",
+    level: "Level 3 - Advanced",
+    category: "Data Science",
+    color: "purple",
+    whatYouLearn: [
+      "Python programming for data science",
+      "Statistical analysis and probability",
+      "Machine learning algorithms and models",
+      "Deep learning and neural networks",
+      "Data visualization with industry tools"
+    ],
+    prerequisites: "Programming basics and mathematical foundation",
+    modules: [
+      { title: "Python for Data Science", duration: "3 weeks" },
+      { title: "Statistics & Probability", duration: "3 weeks" },
+      { title: "Machine Learning", duration: "4 weeks" },
+      { title: "Deep Learning", duration: "4 weeks" },
+      { title: "Real-world Projects", duration: "2 weeks" }
+    ]
+  },
+  8: {
+    id: 8,
+    title: "Cybersecurity Fundamentals",
+    description: "Essential cybersecurity concepts, ethical hacking, and network security.",
+    duration: "10 weeks",
+    level: "Level 3 - Advanced",
+    category: "Security",
+    color: "purple",
+    whatYouLearn: [
+      "Network security principles",
+      "Ethical hacking techniques",
+      "Vulnerability assessment and penetration testing",
+      "Security tools and frameworks",
+      "Incident response and forensics"
+    ],
+    prerequisites: "Computer Hardware & Troubleshooting or equivalent networking knowledge",
+    modules: [
+      { title: "Security Fundamentals", duration: "2 weeks" },
+      { title: "Network Security", duration: "2 weeks" },
+      { title: "Ethical Hacking", duration: "3 weeks" },
+      { title: "Security Tools", duration: "2 weeks" },
+      { title: "Incident Response", duration: "1 week" }
+    ]
+  },
+  9: {
+    id: 9,
+    title: "Cloud Architecture with AWS",
+    description: "Deploy scalable applications using Amazon Web Services and cloud infrastructure.",
+    duration: "8 weeks",
+    level: "Level 3 - Advanced",
+    category: "Cloud Computing",
+    color: "purple",
+    whatYouLearn: [
+      "AWS core services and architecture",
+      "EC2, S3, and database services",
+      "Cloud networking and security",
+      "Serverless computing with Lambda",
+      "DevOps and CI/CD pipelines"
+    ],
+    prerequisites: "Web Development experience and basic networking",
+    modules: [
+      { title: "AWS Fundamentals", duration: "1 week" },
+      { title: "Core Services", duration: "2 weeks" },
+      { title: "Networking & Security", duration: "2 weeks" },
+      { title: "Serverless Architecture", duration: "2 weeks" },
+      { title: "DevOps & Deployment", duration: "1 week" }
+    ]
+  },
+  10: {
+    id: 10,
+    title: "Mobile App Development",
+    description: "Build cross-platform mobile applications using React Native and Flutter.",
+    duration: "12 weeks",
+    level: "Level 3 - Advanced",
+    category: "Development",
+    color: "purple",
+    whatYouLearn: [
+      "Mobile app development fundamentals",
+      "React Native framework",
+      "Flutter and Dart programming",
+      "Native device features integration",
+      "App store deployment"
+    ],
+    prerequisites: "Web Development Bootcamp or JavaScript proficiency",
+    modules: [
+      { title: "Mobile Development Basics", duration: "2 weeks" },
+      { title: "React Native", duration: "4 weeks" },
+      { title: "Flutter Development", duration: "4 weeks" },
+      { title: "App Deployment", duration: "2 weeks" }
+    ]
+  },
+  11: {
+    id: 11,
+    title: "Fiverr Introduction",
+    description: "Learn how to create and optimize your Fiverr profile to attract clients.",
+    duration: "2 weeks",
+    level: "Freelancing",
+    category: "Freelancing",
+    color: "orange",
+    whatYouLearn: [
+      "Setting up a professional Fiverr account",
+      "Creating compelling gig descriptions",
+      "Pricing strategies for beginners",
+      "Fiverr algorithm and ranking",
+      "Client communication best practices"
+    ],
+    prerequisites: "None - suitable for beginners",
+    modules: [
+      { title: "Fiverr Basics", duration: "0.5 weeks" },
+      { title: "Creating Gigs", duration: "0.5 weeks" },
+      { title: "Optimization & Marketing", duration: "0.5 weeks" },
+      { title: "Client Management", duration: "0.5 weeks" }
+    ]
+  },
+  12: {
+    id: 12,
+    title: "Upwork Introduction",
+    description: "Master the Upwork platform and learn how to win your first projects.",
+    duration: "2 weeks",
+    level: "Freelancing",
+    category: "Freelancing",
+    color: "orange",
+    whatYouLearn: [
+      "Creating a standout Upwork profile",
+      "Writing winning proposals",
+      "Understanding Upwork's job success score",
+      "Bidding strategies",
+      "Building long-term client relationships"
+    ],
+    prerequisites: "None - suitable for beginners",
+    modules: [
+      { title: "Profile Setup", duration: "0.5 weeks" },
+      { title: "Proposal Writing", duration: "0.5 weeks" },
+      { title: "Bidding Strategies", duration: "0.5 weeks" },
+      { title: "Client Success", duration: "0.5 weeks" }
+    ]
+  },
+  13: {
+    id: 13,
+    title: "Freelancing Basics",
+    description: "Essential skills for starting and managing a successful freelancing career.",
+    duration: "4 weeks",
+    level: "Freelancing",
+    category: "Freelancing",
+    color: "orange",
+    whatYouLearn: [
+      "Finding your niche and positioning",
+      "Setting competitive rates",
+      "Time management and productivity",
+      "Contract negotiation basics",
+      "Managing finances and taxes"
+    ],
+    prerequisites: "None - suitable for beginners",
+    modules: [
+      { title: "Getting Started", duration: "1 week" },
+      { title: "Pricing & Negotiation", duration: "1 week" },
+      { title: "Client Management", duration: "1 week" },
+      { title: "Business Operations", duration: "1 week" }
+    ]
+  },
+  14: {
+    id: 14,
+    title: "Portfolio Creation",
+    description: "Build a professional portfolio that showcases your skills and attracts clients.",
+    duration: "3 weeks",
+    level: "Freelancing",
+    category: "Freelancing",
+    color: "orange",
+    whatYouLearn: [
+      "Portfolio planning and structure",
+      "Selecting and presenting your best work",
+      "Case study creation",
+      "Personal branding",
+      "Portfolio website tools and platforms"
+    ],
+    prerequisites: "At least one technical skill course completed",
+    modules: [
+      { title: "Portfolio Strategy", duration: "0.5 weeks" },
+      { title: "Content Creation", duration: "1 week" },
+      { title: "Website Building", duration: "1 week" },
+      { title: "Launch & Promotion", duration: "0.5 weeks" }
+    ]
+  },
+  15: {
+    id: 15,
+    title: "AI Tools for Freelancers",
+    description: "Leverage AI tools to increase productivity and deliver better results to clients.",
+    duration: "3 weeks",
+    level: "Freelancing",
+    category: "Freelancing",
+    color: "orange",
+    whatYouLearn: [
+      "AI writing assistants for content creation",
+      "Design tools powered by AI",
+      "Automation for repetitive tasks",
+      "AI-powered project management",
+      "Staying competitive with AI integration"
+    ],
+    prerequisites: "AI Essentials for Everyone recommended",
+    modules: [
+      { title: "AI Writing Tools", duration: "1 week" },
+      { title: "AI Design Tools", duration: "1 week" },
+      { title: "Automation & Workflow", duration: "1 week" }
+    ]
+  }
+};
+
+export default function CourseDetailPage({ params }: { params: { id: string } }) {
+  const courseId = parseInt(params.id);
+  const course = allCoursesData[courseId as keyof typeof allCoursesData];
+
+  if (!course) {
+    notFound();
+  }
+
+  const colorClasses = {
+    green: "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200",
+    blue: "bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200",
+    purple: "bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200",
+    orange: "bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-200"
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 py-12">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Back Button */}
+        <Link
+          href="/courses"
+          className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 mb-8 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Courses
+        </Link>
+
+        {/* Course Header */}
+        <div className="glass rounded-3xl p-6 md:p-8 mb-8 animate-slide-in-down">
+          <div className="mb-4">
+            <span className={`px-3 py-1 ${colorClasses[course.color as keyof typeof colorClasses]} text-sm font-medium rounded-full`}>
+              {course.category}
+            </span>
+          </div>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {course.title}
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-6">
+            {course.description}
+          </p>
+
+          <div className="flex flex-wrap gap-4 md:gap-6 text-gray-600 dark:text-gray-300 mb-6">
+            <div className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>{course.duration}</span>
+            </div>
+            <div className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z" />
+              </svg>
+              <span>{course.level}</span>
+            </div>
+          </div>
+
+          <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105">
+            Enroll Now
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* What You'll Learn */}
+            <div className="glass rounded-2xl p-6 md:p-8 animate-scale-in">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                What You'll Learn
+              </h2>
+              <ul className="space-y-3">
+                {course.whatYouLearn.map((item, index) => (
+                  <li key={index} className="flex items-start">
+                    <svg className="h-6 w-6 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-gray-700 dark:text-gray-300">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Course Modules */}
+            <div className="glass rounded-2xl p-6 md:p-8 animate-scale-in">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                Course Curriculum
+              </h2>
+              <div className="space-y-4">
+                {course.modules.map((module, index) => (
+                  <div key={index} className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold mr-4 flex-shrink-0">
+                        {index + 1}
+                      </div>
+                      <span className="font-medium text-gray-900 dark:text-white">{module.title}</span>
+                    </div>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{module.duration}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            {/* Course Info Card */}
+            <div className="glass rounded-2xl p-6 sticky top-6 animate-scale-in">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Course Information
+              </h3>
+              <div className="space-y-4">
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Duration</p>
+                  <p className="text-gray-900 dark:text-white font-medium">{course.duration}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Level</p>
+                  <p className="text-gray-900 dark:text-white font-medium">{course.level}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Prerequisites</p>
+                  <p className="text-gray-900 dark:text-white font-medium">{course.prerequisites}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Modules</p>
+                  <p className="text-gray-900 dark:text-white font-medium">{course.modules.length} modules</p>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-105 mb-3">
+                  Enroll Now
+                </button>
+                <Link
+                  href="/contact"
+                  className="block w-full px-6 py-3 text-center border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300"
+                >
+                  Contact Us
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
